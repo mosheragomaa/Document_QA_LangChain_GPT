@@ -32,7 +32,7 @@ https://github.com/mosheragomaa/Doc-QA-using-LangChain-Gemini/assets/76535465/d7
 ```python
 OPENAI_API_KEY = "your-openai-api-key" 
 
-google_api = "your-google-api-key"
+GOOGLE_API_KEY = "your-google-api-key"
 ```
 
 
