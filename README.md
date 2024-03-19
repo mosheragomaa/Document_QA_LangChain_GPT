@@ -4,8 +4,7 @@ This project is a chatbot powered by the Gemini language model from Google's Gen
 
 ## Demo
 
-
-
+https://github.com/mosheragomaa/Doc-QA-using-LangChain-Gemini/assets/76535465/d71f76aa-9a7e-4f14-a20c-661bf0b3fafb
 
 ## Technologies and Tools:
 - **LangChain**  for text processing, document loading, and building the question-answering chain.
