@@ -1,5 +1,6 @@
 import streamlit as st
-from helpers import *
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+import helpers
 
 st.set_page_config(page_icon = "🤖")
 st.header("🤖 GPT3.5 Powered Chatbot")
