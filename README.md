@@ -1,14 +1,15 @@
 # Document Question-Answering chatbot
 
-This project is a chatbot powered by the Gemini language model from Google's Generative AI. It allows users to upload PDF files and ask questions related to the content of the PDFs. The chatbot uses vector storage and retrieval techniques to search for relevant information within the uploaded documents and generate accurate responses.
+This project is a chatbot powered by the GPT 3.5 from OpenAI. It allows users to upload PDF files and ask questions related to the content of the PDFs. The chatbot uses vector storage and retrieval techniques to search for relevant information within the uploaded documents and generate accurate responses.
 
 ## Demo
 
-https://github.com/mosheragomaa/Doc-QA-using-LangChain-Gemini/assets/76535465/d71f76aa-9a7e-4f14-a20c-661bf0b3fafb
+https://github.com/mosheragomaa/Document_QA_LangChain_GPT/assets/76535465/e348e906-e58d-4a7d-a490-7890ca15a3ba
+
 
 ## Technologies and Tools:
 - **LangChain**  for text processing, document loading, and building the question-answering chain.
-- **Gemini** for the large language model.
+- **GPT 3.5** for the large language model.
 - **OpenAI** Embeddings for text embeddings.
 - **Chroma** as the embedding database.
 - **Streamlit** for the user interface.
@@ -17,9 +18,9 @@ https://github.com/mosheragomaa/Doc-QA-using-LangChain-Gemini/assets/76535465/d7
 
 - Clone the repository:
 
-` git clone https://github.com/mosheragomaa/Doc-QA-Chatbot-using-LangChain-Gemini.git `
+` git clone https://github.com/mosheragomaa/Document_QA_LangChain_GPT.git `
 
-` cd Doc-QA-Chatbot-using-LangChain-Gemini `
+` cd Document_QA_LangChain_GPT `
 
 
 - Install the required dependencies:
@@ -27,14 +28,20 @@ https://github.com/mosheragomaa/Doc-QA-using-LangChain-Gemini/assets/76535465/d7
 ` pip install -r requirements.txt ` 
 
 > [!NOTE]
-> To run this project, you will need to create a config.py file in the project directory and add your OpenAI API key and Google Generative AI API key to it as follows:
+> To run this project, you will need to create an OpenAI API key, and add it to the code files as follows:
 
-```python
-OPENAI_API_KEY = "your-openai-api-key" 
+1) Open  **streamlit.py:** and replace _**api_key**_ value with your API in the following code as follows:
+   ``` python
+   if "llm_model" not in st.session_state:
+     st.session_state["llm_model"] = ChatOpenAI(model="gpt-3.5-turbo-0125", api_key= "YOUR_API_KEY")
 
-GOOGLE_API_KEY = "your-google-api-key"
+2) Open **helpers.py:** and replace _**api_key**_ value with your API as follows:
+  
+
+``` python
+llm = ChatOpenAI(model="gpt-3.5-turbo-0125", api_key= "YOUR_API_KEY")
+
 ```
-
 
 ## Usage
 
@@ -51,6 +58,11 @@ The chatbot will generate responses based on the relevant information found in t
 
 - _**helpers.py:**_ Contains helper functions for loading PDFs, splitting text, creating vector stores, and building the question-answering chain.
 
-- _**config.py:**_ Configuration file for storing API keys.
-
 - _**requirements.txt:**_ List of required Python packages.
+
+## Contributions
+
+Contributors are welcome to add: 
+- Chat history feature.
+- Summarization feature.
+- Feature to provide document resources.
