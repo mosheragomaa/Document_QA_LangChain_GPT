@@ -1,28 +1,27 @@
 import streamlit as st
-from config import OPENAI_API_KEY, google_api
 from helpers import *
 
 st.set_page_config(page_icon = "🤖")
-st.header("✨ Gemini Powered Chatbot")
-
-llm = GoogleGenerativeAI(model="gemini-pro", google_api_key = google_api)
+st.header("🤖 GPT3.5 Powered Chatbot")
 
 pdf = st.file_uploader("Upload your PDF Files", accept_multiple_files=True)
 
+
+@st.cache_resource
+def pdf_processing(pdf):
+        pdf = helpers.load_pdf(pdf)
+        splitted_text = helpers.text_splitter(pdf)
+        doc_vector_store = helpers.vector_store(splitted_text)
+        rag_question_chain = helpers.question_chain(doc_vector_store)
+        chain = rag_question_chain
+        return chain
+
 if pdf:
-    pdf = load_pdf(pdf)
-    splitted_text = text_splitter(pdf)
-    doc_vector_store = vector_store(splitted_text)
-    rag_question_chain = question_chain(doc_vector_store)
-    chain = rag_question_chain
-    list_ = [splitted_text, doc_vector_store, rag_question_chain, chain, pdf]
-    for var in list_:
-        if var not in st.session_state:
-            st.session_state.key = var
+     chain = pdf_processing(pdf)
 
-if "gemini_model" not in st.session_state:
-    st.session_state["gemini_model"] = GoogleGenerativeAI(model="gemini-pro", google_api_key = google_api)
-
+if "llm_model" not in st.session_state:
+    st.session_state["llm_model"] = ChatOpenAI(model="gpt-3.5-turbo-0125", api_key='YOUR_API_KEY')
+    
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
