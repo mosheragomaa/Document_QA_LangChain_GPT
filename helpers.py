@@ -152,7 +152,7 @@ def question_chain(retriever):
     """
     
     prompt = PromptTemplate.from_template(template)
-    llm = GoogleGenerativeAI(model="gemini-pro", google_api_key= google_api)
+    llm = ChatOpenAI(model="gpt-3.5-turbo-0125", api_key= "YOUR_API_KEY")
     rag_chain = ({"context": retriever | format_docs, "question": RunnablePassthrough()}
         | prompt
         | llm
